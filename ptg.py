@@ -6,12 +6,12 @@ from constants import *
 # TODO - tweak weights to existing cost functions
 WEIGHTED_COST_FUNCTIONS = [
     (time_diff_cost,    1),
-    (s_diff_cost,       1),
-    (d_diff_cost,       1),
+    (s_diff_cost,       3),
+    (d_diff_cost,       3),
     (efficiency_cost,   1),
     (max_jerk_cost,     1),
-    (total_jerk_cost,   1),
-    (collision_cost,    1),
+    (total_jerk_cost,   5),
+    (collision_cost,    10),
     (buffer_cost,       1),
     (max_accel_cost,    1),
     (total_accel_cost,  1),
@@ -72,7 +72,7 @@ def PTG(start_s, start_d, target_vehicle, delta, T, predictions):
         trajectories.append(tuple([s_coefficients, d_coefficients, t]))
 
     best = min(trajectories, key=lambda tr: calculate_cost(tr, target_vehicle, delta, T, predictions, WEIGHTED_COST_FUNCTIONS))
-    calculate_cost(best, target_vehicle, delta, T, predictions, WEIGHTED_COST_FUNCTIONS, verbose=True)
+    #calculate_cost(best, target_vehicle, delta, T, predictions, WEIGHTED_COST_FUNCTIONS, verbose=True)
     return best
 
 
